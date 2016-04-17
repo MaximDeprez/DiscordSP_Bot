@@ -1,0 +1,2 @@
+Use ! followed by a command:
+for a list of commands use !commands

@@ -1,0 +1,9 @@
+// Schedule //
+
+Monday:   	PvE Raid
+Tuesday:  	Guild Missions
+Wednesday:	WvW Raid
+Thursday: 	PvE Raid
+Friday:   	WvW Raid
+Saturday: 	Free day
+Sunday:   	Free day (or PvE Raid)

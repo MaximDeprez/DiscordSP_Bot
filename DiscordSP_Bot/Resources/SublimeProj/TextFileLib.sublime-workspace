@@ -1,0 +1,248 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"heig",
+				"height"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"main",
+				"main_menu"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"h",
+				"h1	Tag"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"sort",
+				"Sort Lines"
+			],
+			[
+				"",
+				"Sort Lines"
+			],
+			[
+				"sort	",
+				"Sort Lines"
+			]
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/DOCUMENTS/C#/Projects/DiscordBot01/Resources/SublimeProj/schedule.txt",
+		"/D/DOCUMENTS/C#/Projects/DiscordBot01/Resources/SublimeProj/info.txt",
+		"/D/DOCUMENTS/C#/Projects/DiscordBot01/Resources/SublimeProj/notebook.txt",
+		"/D/Program Files HDD/MusicBot-1.9.5rc5/config/options.ini",
+		"/D/Program Files HDD/MusicBot-1.9.5rc5/config/permissions.ini",
+		"/C/Users/Maxim/Downloads/FMatrix.h",
+		"/C/Users/Maxim/AppData/Local/Temp/Rar$DRa0.558/airhornbot-master/README.md",
+		"/C/Users/Maxim/AppData/Local/Temp/Rar$DRa0.979/fur.fx",
+		"/C/Users/Maxim/AppData/Local/Temp/Rar$DRa0.814/GP2_G_OverlordEngine/OverlordEngine/Content/MeshFilterLoader.cpp",
+		"/D/DOCUMENTS/HTML/root/index.html",
+		"/C/Users/Maxim/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/D/GW2/Source/Repos/GW2DPS---Group-Damage-Meter-master/README.md",
+		"/C/Users/Maxim/Desktop/index.html",
+		"/D/2DAE/Graphics Programming 2/GP2_G_OverlordEngine/OverlordProject/Resources/SpriteFonts/Font.fnt",
+		"/D/2DAE/GameProjects/Ideas",
+		"/D/2DAE/Graphics Programming 2/Week_3/Lab_A/SpriteRenderer/SpriteRenderer/TEST/Resources/Effects/TextRenderer.fx",
+		"/D/2DAE/GameProjects/Info.txt",
+		"/H/SITE HUISJEAANZEE/week.htm",
+		"/H/SITE HUISJEAANZEE/NEW/week.htm",
+		"/H/week.htm",
+		"/D/2DAE/Programming 3/Source/Repos/prog3_maxim.deprez/1516_exam_1st_sitting/textlist.bin",
+		"/D/2DAE/Programming 3/Source/Repos/prog3_maxim.deprez/SQL/05_SQL_GROUP_BY.txt",
+		"/D/2DAE/Programming 3/Source/Repos/prog3_maxim.deprez/SQL/03_SQL_SORTING.txt",
+		"/D/2DAE/Programming 3/Source/Repos/prog3_maxim.deprez/SQL/02_SQL_WHERE.txt",
+		"/D/2DAE/Programming 3/Source/Repos/prog3_maxim.deprez/SQL/01_SELECT_FROM.txt",
+		"/D/2DAE/Programming 3/Source/Repos/prog3_maxim.deprez/SQL/04_SQL_JOINS.txt",
+		"/D/2DAE/Programming 3/ClassLocal/05_SQL_GROUP_BY/05_SQL_GROUP_BY.txt",
+		"/D/2DAE/Programming 3/ClassLocal/04_SQL_JOINS/04_SQL_JOINS.txt",
+		"/D/2DAE/Programming 3/ClassLocal/03_SQL_SORTING/03_SQL_SORTING.txt",
+		"/D/Music/Maxim/Futuristic & Devvon Terrell/FUTURISTIC & Devvon Terrell - Coast 2 Coast/FUTURISTIC & Devvon Terrell - Coast 2 Coast (2015-12-25T08-00-00Z).m3u",
+		"/D/Music/Maxim/Futuristic & Devvon Terrell/Coast 2 Coast/FUTURISTIC & Devvon Terrell - Coast 2 Coast/FUTURISTIC & Devvon Terrell - Coast 2 Coast (2015-12-25T08-00-00Z).m3u",
+		"/D/2DAE/Game Prototyping/My Unity Projects/MeatBoyStudents/Assets/Scripts/SmoothCamera.cs",
+		"/C/Users/Maxim/Desktop/CharacterMovement.cs",
+		"/D/2DAE/Programming 3/ClassLocal/02_SQL_WHERE/02_SQL_WHERE.txt",
+		"/D/2DAE/Programming 3/ClassLocal/01_SELECT_FROM/01_SELECT_FROM.txt",
+		"/D/2DAE/Programming 3/Source/Repos/prog3_maxim.deprez/.gitignore",
+		"/D/2DAE/Graphics Programming 1/Lab07_Meshes/GP1_W7_Meshes_Start/Meshes/Table.ovm",
+		"/D/2DAE/Programming 3/Source/Repos/prog3_maxim.deprez/07_Doom/Resources/doom1.wad",
+		"/D/2DAE/Programming 3/Source/Repos/prog3_maxim.deprez/03_BoardGames/Resources/bggdump.csv",
+		"/C/Users/Maxim/Desktop/A1.txt",
+		"/C/Users/Maxim/Desktop/A1"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			">\n",
+			";\n",
+			"top-bar",
+			"nav",
+			".side-nav",
+			"nav {",
+			"body",
+			"top-bar-section",
+			"Verona",
+			".",
+			",",
+			" ",
+			"Z10",
+			" ",
+			"\n",
+			" ",
+			",",
+			"×",
+			",",
+			" ×12, ",
+			": ",
+			" ",
+			"12",
+			"E 12\nA 9\nI 9\nO 8\nN 6\nR 6\nT 6\nL 4\nS 4\nU 4\nD 4\nG 3\nB 2\nC 2\nM 2\nP 2\nF 2\nH 2\nV 2\nW 2\nY 2\nK 1\nJ 1\nX 1\nQ 1\nZ 1",
+			",",
+			" ",
+			", ",
+			"1 ",
+			" ×",
+			"p",
+			"P",
+			"p",
+			": ",
+			" ",
+			", ",
+			" ×",
+			"point",
+			"s",
+			": "
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
