@@ -56,13 +56,15 @@ namespace DiscordSP_Bot
 
                 if (e.MessageText == m_Commandsign + "pve-raid")
                 {
-                    string message = CreateRaidSquad(m_ResourcePath, m_FilePrefix);
+                    string username = e.Author.Username + "#" + e.Author.Discriminator;
+                    string message = CreateRaidSquad(username, m_ResourcePath, m_FilePrefix);
                     e.Channel.SendMessage(message);
                 }
 
                 if (e.MessageText == m_Commandsign + "join")
                 {
-                    string message = JoinRaidSquad(m_ResourcePath, m_FilePrefix);
+                    string username = e.Author.Username + "#" + e.Author.Discriminator;
+                    string message = JoinRaidSquad(username, m_ResourcePath, m_FilePrefix);
                     e.Channel.SendMessage(message);
                 }
             };
@@ -89,33 +91,33 @@ namespace DiscordSP_Bot
 
         }
 
-        static public string CreateRaidSquad(string resourcePath, string filePrefix)
+        static public string CreateRaidSquad(string username, string resourcePath, string filePrefix)
         {
             FileInfo[] files = GetPveRaidFiles(resourcePath, filePrefix);
 
-            string formattedDateTimeNow = DateTime.Now.ToString("yyyy-MM-d H:mm:ss tt");
+            string formattedDateNow = DateTime.Now.ToString("yyyy-MM-d");
 
             if (files.Count() > 0)
             {
                 // Pve Raid file already exists.
-                return "A raid squad has been already created. People can join with `!join`.";
+                return "" +
+                    "A raid squad has been already created. People can join with `!join`.\n" +
+                    "```" + File.ReadAllText(resourcePath + filePrefix + formattedDateNow + ".txt") + "```";
             }
 
             StreamWriter sw = File.CreateText(
-                resourcePath + filePrefix + formattedDateTimeNow + ".txt"
+                resourcePath + filePrefix + formattedDateNow + ".txt"
             );
 
-            sw.WriteLine(formattedDateTimeNow);
+            sw.WriteLine(username);
             sw.Close();
 
             return "The raid squad has been created! People can now join with ´!join´.";
         }
 
-        static public string JoinRaidSquad(string resourcePath, string filePrefix)
+        static public string JoinRaidSquad(string username, string resourcePath, string filePrefix)
         {
             FileInfo[] files = GetPveRaidFiles(resourcePath, filePrefix);
-
-            string formattedDateTimeNow = DateTime.Now.ToString("yyyy-MM-d H:mm:ss tt");
 
             if (files.Count() == 0)
             {
@@ -124,7 +126,17 @@ namespace DiscordSP_Bot
 
             FileInfo file = files.First();
 
-            int lineCount = File.ReadLines(resourcePath + file.Name).Count();
+            int lineCount = 0;
+
+            foreach (string line in File.ReadLines(resourcePath + file.Name))
+            {
+                if (line.Equals(username))
+                {
+                    return "You've already joined.";
+                }
+
+                lineCount++;
+            }
 
             if (lineCount >= 10)
             {
@@ -132,20 +144,24 @@ namespace DiscordSP_Bot
             }
 
             StreamWriter sw = new StreamWriter(resourcePath + file.Name, true);
-            sw.WriteLine(formattedDateTimeNow);
+            sw.WriteLine(username);
             sw.Close();
 
-            return "You have joined raid. " + (10 - lineCount) + " spot(s) left.";
+            return ""+
+                "You have joined the raid squad!\n" +
+                "```" + File.ReadAllText(resourcePath + file.Name) + "```" +
+                (10 - lineCount - 1) + " spot(s) left.";
         }
 
         static public FileInfo[] GetPveRaidFiles(string resourcePath, string filePrefix)
         {
+            string formattedDateNow = DateTime.Now.ToString("yyyy-MM-d");
+
             DirectoryInfo info = new DirectoryInfo(resourcePath);
 
             return info
                 .GetFiles()
-                .Where(f => f.Name.StartsWith(filePrefix))
-                .OrderByDescending(f => f.CreationTime)
+                .Where(f => f.Name.StartsWith(filePrefix + formattedDateNow))
                 .ToArray();
         }
 
