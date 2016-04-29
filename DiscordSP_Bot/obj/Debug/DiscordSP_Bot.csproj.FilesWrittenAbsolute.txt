@@ -1,0 +1,13 @@
+/Users/ms/Code/Development/DiscordSP_Bot/DiscordSP_Bot/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/ms/Code/Development/DiscordSP_Bot/DiscordSP_Bot/bin/Debug/DiscordSP_Bot.exe.config
+/Users/ms/Code/Development/DiscordSP_Bot/DiscordSP_Bot/bin/Debug/DiscordSP_Bot.exe.mdb
+/Users/ms/Code/Development/DiscordSP_Bot/DiscordSP_Bot/bin/Debug/DiscordSP_Bot.exe
+/Users/ms/Code/Development/DiscordSP_Bot/DiscordSP_Bot/obj/Debug/DiscordSP_Bot.exe
+/Users/ms/Code/Development/DiscordSP_Bot/DiscordSP_Bot/obj/Debug/DiscordSP_Bot.exe.mdb
+/Users/ms/Code/Development/DiscordSP_Bot/DiscordSP_Bot/bin/Debug/DiscordSharp.dll
+/Users/ms/Code/Development/DiscordSP_Bot/DiscordSP_Bot/bin/Debug/NAudio.dll
+/Users/ms/Code/Development/DiscordSP_Bot/DiscordSP_Bot/bin/Debug/Newtonsoft.Json.dll
+/Users/ms/Code/Development/DiscordSP_Bot/DiscordSP_Bot/bin/Debug/websocket-sharp.dll
+/Users/ms/Code/Development/DiscordSP_Bot/DiscordSP_Bot/bin/Debug/WebSocket4Net.dll
+/Users/ms/Code/Development/DiscordSP_Bot/DiscordSP_Bot/bin/Debug/nunit.framework.dll
+/Users/ms/Code/Development/DiscordSP_Bot/DiscordSP_Bot/obj/Debug/.NETFramework,Version=v4.5.2.AssemblyAttribute.cs

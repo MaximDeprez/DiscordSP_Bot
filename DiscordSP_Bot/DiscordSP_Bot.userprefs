@@ -1,0 +1,30 @@
+﻿<Properties StartupItem="DiscordSP_Bot.csproj" RefactoringSettings.EnableRefactorings="True">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="RaidSquadTest.cs">
+    <Files>
+      <File FileName="Program.cs" Line="129" Column="24" />
+      <File FileName="RaidSquad.cs" Line="33" Column="19" />
+      <File FileName="RaidSquadTest.cs" Line="103" Column="6" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="DiscordSP_Bot" expanded="True">
+            <Node name="DiscordSP_Bot" expanded="True">
+              <Node name="RaidSquadTest.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State name="__root__">
+          <Node name="DiscordSP_Bot" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

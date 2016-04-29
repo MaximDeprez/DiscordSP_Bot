@@ -17,13 +17,11 @@ namespace DiscordSP_Bot
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Defining variables");
+
+			Console.WriteLine("Defining variables");
             DiscordClient client = new DiscordClient("MTcwODkzNTEzNTk1MTU4NTI4.CfP75Q.kyPcmCMumkrwFenTdKutEeZnFhM", true);
 
             string m_Commandsign = "!";
-
-            string m_ResourcePath = "../../Resources/";
-            string m_FilePrefix = "pveRaid-";
 
             client.Connected += (sender, e) =>
             {
@@ -57,15 +55,33 @@ namespace DiscordSP_Bot
                 if (e.MessageText == m_Commandsign + "pve-raid")
                 {
                     string username = e.Author.Username + "#" + e.Author.Discriminator;
-                    string message = CreateRaidSquad(username, m_ResourcePath, m_FilePrefix);
-                    e.Channel.SendMessage(message);
+
+                    RaidSquad sq = new RaidSquad();
+					sq.Create(username);
+
+//                    try
+//                    {
+                        e.Channel.SendMessage("Squad created.");
+						e.Channel.SendMessage("```" + String.Join("\n", sq.GetMemberList()) + "```");
+//                    }
+//                    catch (RaidSquadAlreadyExistException exception)
+//                    {
+//                        e.Channel.SendMessage("Squad already exists.");
+//                    }
+
+                    // string username = e.Author.Username + "#" + e.Author.Discriminator;
+                    // string message = CreateRaidSquad(username, m_ResourcePath, m_FilePrefix);
                 }
 
                 if (e.MessageText == m_Commandsign + "join")
                 {
                     string username = e.Author.Username + "#" + e.Author.Discriminator;
-                    string message = JoinRaidSquad(username, m_ResourcePath, m_FilePrefix);
-                    e.Channel.SendMessage(message);
+
+					RaidSquad sq = new RaidSquad();
+                    bool a = sq.Join(username);
+                    // string username = e.Author.Username + "#" + e.Author.Discriminator;
+                    // string message = JoinRaidSquad(username, m_ResourcePath, m_FilePrefix);
+					e.Channel.SendMessage(a ? "YEP" : "NOP");
                 }
             };
 
@@ -90,80 +106,73 @@ namespace DiscordSP_Bot
             Environment.Exit(0);
 
         }
-
-        static public string CreateRaidSquad(string username, string resourcePath, string filePrefix)
-        {
-            FileInfo[] files = GetPveRaidFiles(resourcePath, filePrefix);
-
-            string formattedDateNow = DateTime.Now.ToString("yyyy-MM-d");
-
-            if (files.Count() > 0)
-            {
-                // Pve Raid file already exists.
-                return "" +
-                    "A raid squad has been already created. People can join with `!join`.\n" +
-                    "```" + File.ReadAllText(resourcePath + filePrefix + formattedDateNow + ".txt") + "```";
-            }
-
-            StreamWriter sw = File.CreateText(
-                resourcePath + filePrefix + formattedDateNow + ".txt"
-            );
-
-            sw.WriteLine(username);
-            sw.Close();
-
-            return "The raid squad has been created! People can now join with ´!join´.";
-        }
-
-        static public string JoinRaidSquad(string username, string resourcePath, string filePrefix)
-        {
-            FileInfo[] files = GetPveRaidFiles(resourcePath, filePrefix);
-
-            if (files.Count() == 0)
-            {
-                return "There is not raid to join.";
-            }
-
-            FileInfo file = files.First();
-
-            int lineCount = 0;
-
-            foreach (string line in File.ReadLines(resourcePath + file.Name))
-            {
-                if (line.Equals(username))
-                {
-                    return "You've already joined.";
-                }
-
-                lineCount++;
-            }
-
-            if (lineCount >= 10)
-            {
-                return "Sorry, ten people have already joined the raid.";
-            }
-
-            StreamWriter sw = new StreamWriter(resourcePath + file.Name, true);
-            sw.WriteLine(username);
-            sw.Close();
-
-            return ""+
-                "You have joined the raid squad!\n" +
-                "```" + File.ReadAllText(resourcePath + file.Name) + "```" +
-                (10 - lineCount - 1) + " spot(s) left.";
-        }
-
-        static public FileInfo[] GetPveRaidFiles(string resourcePath, string filePrefix)
-        {
-            string formattedDateNow = DateTime.Now.ToString("yyyy-MM-d");
-
-            DirectoryInfo info = new DirectoryInfo(resourcePath);
-
-            return info
-                .GetFiles()
-                .Where(f => f.Name.StartsWith(filePrefix + formattedDateNow))
-                .ToArray();
-        }
+//
+//        static public string CreateRaidSquad(string username, string resourcePath, string filePrefix)
+//        {
+//            FileInfo[] files = GetPveRaidFiles(resourcePath, filePrefix);
+//
+//            string formattedDateNow = DateTime.Now.ToString("yyyy-MM-d");
+//
+//            if (files.Count() > 0)
+//            {
+//                // Pve Raid file already exists.
+//                return "" +
+//                    "A raid squad has been already created. People can join with `!join`.\n" +
+//                    "```" + File.ReadAllText(resourcePath + filePrefix + formattedDateNow + ".txt") + "```";
+//            }
+//
+//            StreamWriter sw = File.CreateText(
+//                resourcePath + filePrefix + formattedDateNow + ".txt"
+//            );
+//
+//            sw.WriteLine(username);
+//            sw.Close();
+//
+//            return "The raid squad has been created! People can now join with ´!join´.";
+//        }
+//
+//        static public string JoinRaidSquad(string username, string resourcePath, string filePrefix)
+//        {
+//            FileInfo[] files = GetPveRaidFiles(resourcePath, filePrefix);
+//
+//            if (files.Count() == 0)
+//            {
+//                return "There is not raid to join.";
+//            }
+//
+//            FileInfo file = files.First();
+//
+//            int lineCount = 0;
+//
+//            foreach (string line in File.ReadLines(resourcePath + file.Name))
+//            {
+//                if (line.Equals(username))
+//                {
+//                    return "You've already joined."a;
+//                }
+//
+//                lineCount++;
+//            }
+//
+//            if (lineCount >= 10)
+//            {
+//                return "Sorry, ten people have already joined the raid.";
+//            }
+//
+//            StreamWriter sw = new StreamWriter(resourcePath + file.Name, true);
+//            sw.WriteLine(username);
+//            sw.Close();
+//
+//            return ""+
+//                "You have joined the raid squad!\n" +
+//                "```" + File.ReadAllText(resourcePath + file.Name) + "```" +
+//                (10 - lineCount - 1) + " spot(s) left.";
+//        }
+//
+//        static public FileInfo GetPveRaidFile(string resourcePath, string filePrefix)
+//        {
+//			return new FileInfo(resourcePath + filePrefix);
+//        }
 
     }
 }
