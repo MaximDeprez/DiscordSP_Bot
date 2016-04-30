@@ -14,7 +14,6 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -63,9 +62,11 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RaidSquad.cs" />
-    <Compile Include="RaidSquadAlreadyExistException.cs" />
     <Compile Include="RaidSquadTest.cs" />
+    <Compile Include="RaidSquad.cs" />
+    <Compile Include="RaidSquadNotFoundException.cs" />
+    <Compile Include="RaidSquadMemberLimitReached.cs" />
+    <Compile Include="RaidSquadMemberAlreadyJoined.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

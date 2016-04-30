@@ -49,7 +49,7 @@ namespace DiscordSP_Bot
 		}
 
 		[Test]
-		public void test_that_a_user_can_join_the_squad()
+		public void test_the_user_can_join_the_squad()
 		{
 			try
 			{
@@ -67,30 +67,27 @@ namespace DiscordSP_Bot
 			}
 		}
 
-//		[Test]
-//		public void test_that_a_maximum_of_10_users_can_join()
-//		{
-//			try
-//			{
-//				bool didJoin = true;
-//
-//				sq.Create("Username#1234");
-//
-//				for (int i = 0; i < 11; i++)
-//				{
-//					didJoin = sq.Join("TheOtherUser#123" + i);
-//				}
-//
-//				Assert.False(didJoin);
-//			}
-//			finally
-//			{
-//				sq.Disband(sq.Identifier);
-//			}
-//		}
+		[Test]
+		[ExpectedException(typeof(RaidSquadMemberLimitReached))]
+		public void test_that_a_maximum_of_10_users_can_join()
+		{
+			try
+			{
+				sq.Create("Username#1234");
+
+				for (int i = 0; i < 10; i++)
+				{
+					sq.Join("TheOtherUser#123" + i);
+				}
+			}
+			finally
+			{
+				sq.Disband(sq.Identifier);
+			}
+		}
 
 		[Test]
-		public void test_that_member_list_contains_the_usernames()
+		public void test_the_member_list_contains_the_usernames()
 		{
 			try
 			{
@@ -113,6 +110,36 @@ namespace DiscordSP_Bot
 						String.Equals(memberList[i], memberListFromSquad[i])
 					);
 				}
+			}
+			finally
+			{
+				sq.Disband(sq.Identifier);
+			}
+		}
+
+		[Test]
+		[ExpectedException(typeof(RaidSquadMemberAlreadyJoined))]
+		public void test_the_user_can_join_only_once()
+		{
+			try
+			{
+				sq.Create("Username#1234");
+
+				sq.Join("Username#1234");
+			}
+			finally
+			{
+				sq.Disband(sq.Identifier);
+			}
+		}
+
+		[Test]
+		[ExpectedException(typeof(RaidSquadNotFoundException))]
+		public void test_the_user_cannot_join_if_no_squad_has_been_created()
+		{
+			try
+			{
+				sq.Join("Username#1234");
 			}
 			finally
 			{

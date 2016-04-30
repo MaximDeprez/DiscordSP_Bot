@@ -18,9 +18,6 @@ namespace DiscordSP_Bot
 			get { return identifier; }
 		}
 			
-		// @todo: Constant?
-		private string resourcePath = "../../Resources/";
-
 		public RaidSquad()
 		{
 			DateTime now = DateTime.Now;
@@ -35,8 +32,6 @@ namespace DiscordSP_Bot
 
 		public bool Create(string username)
 		{
-			this.identifier += username;
-
 			string path = "../../Resources/" + this.identifier + ".txt";
 
 			if (File.Exists(path))
@@ -45,6 +40,11 @@ namespace DiscordSP_Bot
 //					"The raid squad with the given identifier [" + this.identifier + "] already exists."
 //				);
 				return false;
+			}
+
+			using (FileStream fs = File.Create(path))
+			{
+				
 			}
 
 			return this.Join(username);
@@ -57,12 +57,24 @@ namespace DiscordSP_Bot
 
 		public bool Join(string username)
 		{
-//			int lineCount = File.ReadLines("../../Resources/" + this.identifier + ".txt").Count();
-//
-//			if (lineCount > 9)
-//			{
-//				return false;
-//			}
+			if ( ! File.Exists("../../Resources/" + this.identifier + ".txt"))
+			{
+				throw new RaidSquadNotFoundException();
+			}
+
+			string[] memberList =  this.GetMemberList();
+
+			if (memberList.Count() > 9)
+			{
+				throw new RaidSquadMemberLimitReached();
+				return false;
+			}
+				
+			if (memberList.Contains(username))
+			{
+				throw new RaidSquadMemberAlreadyJoined();
+				return false;
+			}
 
 			this.AddUsernameToFile(username);
 
@@ -80,9 +92,8 @@ namespace DiscordSP_Bot
 			{
 				sw.WriteLine(username);
 			}
-
-			Console.WriteLine(username + " joined the squad.");
 		}
+
 	}
 }
 

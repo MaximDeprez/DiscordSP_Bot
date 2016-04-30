@@ -57,20 +57,18 @@ namespace DiscordSP_Bot
                     string username = e.Author.Username + "#" + e.Author.Discriminator;
 
                     RaidSquad sq = new RaidSquad();
-					sq.Create(username);
 
-//                    try
-//                    {
+                    try
+                    {
+						sq.Create(username);
+
                         e.Channel.SendMessage("Squad created.");
 						e.Channel.SendMessage("```" + String.Join("\n", sq.GetMemberList()) + "```");
-//                    }
-//                    catch (RaidSquadAlreadyExistException exception)
-//                    {
-//                        e.Channel.SendMessage("Squad already exists.");
-//                    }
-
-                    // string username = e.Author.Username + "#" + e.Author.Discriminator;
-                    // string message = CreateRaidSquad(username, m_ResourcePath, m_FilePrefix);
+                    }
+					catch (RaidSquadNotFoundException exception)
+                    {
+                        e.Channel.SendMessage("There is not any squad to join.");
+                    }
                 }
 
                 if (e.MessageText == m_Commandsign + "join")
@@ -81,7 +79,7 @@ namespace DiscordSP_Bot
                     bool a = sq.Join(username);
                     // string username = e.Author.Username + "#" + e.Author.Discriminator;
                     // string message = JoinRaidSquad(username, m_ResourcePath, m_FilePrefix);
-					e.Channel.SendMessage(a ? "YEP" : "NOP");
+					e.Channel.SendMessage(a ? "Joined" : "Not Joined");
                 }
             };
 
