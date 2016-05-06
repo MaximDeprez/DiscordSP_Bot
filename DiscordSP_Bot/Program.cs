@@ -52,34 +52,60 @@ namespace DiscordSP_Bot
                     e.Channel.SendMessage("http://shadowprisoners.org/");
                 }
 
-                if (e.MessageText == m_Commandsign + "pve-raid")
+				if (e.MessageText == m_Commandsign + "squad")
                 {
-                    string username = e.Author.Username + "#" + e.Author.Discriminator;
+					RaidSquad sq = new RaidSquad();
 
-                    RaidSquad sq = new RaidSquad();
+					List<string> squadList = new List<string>();
 
-                    try
-                    {
-						sq.Create(username);
+					foreach (var name in sq.GetSquadList())
+					{
+						squadList.Add(name + ". Type `join @mention` to join.");
+					}
 
-                        e.Channel.SendMessage("Squad created.");
-						e.Channel.SendMessage("```" + String.Join("\n", sq.GetMemberList()) + "```");
-                    }
-					catch (RaidSquadNotFoundException exception)
-                    {
-                        e.Channel.SendMessage("There is not any squad to join.");
-                    }
+					e.Channel.SendMessage("```" + squadList + "```");
                 }
 
-                if (e.MessageText == m_Commandsign + "join")
-                {
-                    string username = e.Author.Username + "#" + e.Author.Discriminator;
-
+				if (e.MessageText == m_Commandsign + "squad create")
+				{
 					RaidSquad sq = new RaidSquad();
-                    bool a = sq.Join(username);
-                    // string username = e.Author.Username + "#" + e.Author.Discriminator;
-                    // string message = JoinRaidSquad(username, m_ResourcePath, m_FilePrefix);
-					e.Channel.SendMessage(a ? "Joined" : "Not Joined");
+
+					string username = e.Author.Username + "#" + e.Author.Discriminator;
+
+					sq.Create(username);
+
+					e.Channel.SendMessage("Squad has been created. Type ´join @"+ username +"` to join the squad.");
+				}
+
+				if (e.MessageText == m_Commandsign + "squad disband")
+				{
+					RaidSquad sq = new RaidSquad();
+
+					string username = e.Author.Username + "#" + e.Author.Discriminator;
+
+					try
+					{
+						sq.Disband(username);
+					}
+					catch (RaidSquadNotFoundException exception)
+					{
+						e.Channel.SendMessage("Squad by by " + username + " cannot been found.");
+					}
+				}
+
+				// @todo !join @Username (is a mention, I think)
+				if (e.MessageText.StartsWith(m_Commandsign + "join"))
+                {
+//					Console.WriteLine(e.RawJson);
+					Console.WriteLine(e.RawJson.ToObject<Array>()["d"]["mentions"][0]["id"]);
+
+//                    string username = e.Author.Username + "#" + e.Author.Discriminator;
+//
+//					RaidSquad sq = new RaidSquad();
+//                    bool a = sq.Join("mention", username);
+//                    // string username = e.Author.Username + "#" + e.Author.Discriminator;
+//                    // string message = JoinRaidSquad(username, m_ResourcePath, m_FilePrefix);
+//					e.Channel.SendMessage(a ? "Joined" : "Not Joined");
                 }
             };
 

@@ -23,11 +23,11 @@ namespace DiscordSP_Bot
 			{
 				sq.Create("Username#1234");
 
-				Assert.True(File.Exists("../../Resources/" + sq.Identifier + ".txt"));	
+				Assert.True(File.Exists("../../Resources/" + sq.Identifier + "__" + "Username#1234" + ".txt"));	
 			}
 			finally
 			{
-				sq.Disband(sq.Identifier);
+				sq.Disband("Username#1234");
 			}
 		}
 
@@ -38,13 +38,13 @@ namespace DiscordSP_Bot
 			{
 				sq.Create("Username#1234");
 
-				string line = File.ReadAllLines("../../Resources/" + sq.Identifier + ".txt")[0];
+				string line = File.ReadAllLines("../../Resources/" + sq.Identifier + "__" + "Username#1234" + ".txt")[0];
 
 				Assert.True(String.Equals("Username#1234", line));
 			}
 			finally
 			{
-				sq.Disband(sq.Identifier);
+				sq.Disband("Username#1234");
 			}
 		}
 
@@ -54,16 +54,16 @@ namespace DiscordSP_Bot
 			try
 			{
 				sq.Create("Username#1234");
-				sq.Join("TheOtherUser#1234");
+				sq.Join("Username#1234", "TheOtherUser#1234");
 
-				string[] lineList = File.ReadAllLines("../../Resources/" + sq.Identifier + ".txt");
+				string[] memberList = sq.GetMemberList("Username#1234");
 
-				Assert.False(String.Equals("TheOtherUser#1234", lineList[0]));
-				Assert.True(String.Equals("TheOtherUser#1234", lineList[1]));
+				Assert.False(String.Equals("TheOtherUser#1234", memberList[0]));
+				Assert.True(String.Equals("TheOtherUser#1234", memberList[1]));
 			}
 			finally
 			{
-				sq.Disband(sq.Identifier);
+				sq.Disband("Username#1234");
 			}
 		}
 
@@ -77,12 +77,12 @@ namespace DiscordSP_Bot
 
 				for (int i = 0; i < 10; i++)
 				{
-					sq.Join("TheOtherUser#123" + i);
+					sq.Join("Username#1234", "TheOtherUser#123" + i);
 				}
 			}
 			finally
 			{
-				sq.Disband(sq.Identifier);
+				sq.Disband("Username#1234");
 			}
 		}
 
@@ -99,10 +99,10 @@ namespace DiscordSP_Bot
 				for (int i = 0; i < 3; i++)
 				{
 					memberList.Add("TheOtherUser#123" + i);
-					sq.Join("TheOtherUser#123" + i);
+					sq.Join("Username#1234", "TheOtherUser#123" + i);
 				}
 
-				string[] memberListFromSquad = sq.GetMemberList();
+				string[] memberListFromSquad = sq.GetMemberList("Username#1234");
 
 				for (int i = 0; i < memberList.Count; i++)
 				{
@@ -113,7 +113,7 @@ namespace DiscordSP_Bot
 			}
 			finally
 			{
-				sq.Disband(sq.Identifier);
+				sq.Disband("Username#1234");
 			}
 		}
 
@@ -125,11 +125,11 @@ namespace DiscordSP_Bot
 			{
 				sq.Create("Username#1234");
 
-				sq.Join("Username#1234");
+				sq.Join("Username#1234", "Username#1234");
 			}
 			finally
 			{
-				sq.Disband(sq.Identifier);
+				sq.Disband("Username#1234");
 			}
 		}
 
@@ -139,11 +139,11 @@ namespace DiscordSP_Bot
 		{
 			try
 			{
-				sq.Join("Username#1234");
+				sq.Join("Username#1234", "Username#1234");
 			}
 			finally
 			{
-				sq.Disband(sq.Identifier);
+				sq.Disband("Username#1234");
 			}
 		}
 

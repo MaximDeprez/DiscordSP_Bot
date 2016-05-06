@@ -14,7 +14,8 @@ namespace DiscordSP_Bot
 
 		private string identifier;
 
-		public string Identifier {
+		public string Identifier
+		{
 			get { return identifier; }
 		}
 			
@@ -22,7 +23,7 @@ namespace DiscordSP_Bot
 		{
 			DateTime now = DateTime.Now;
 
-			this.identifier = "pveRaid-" + now.Year + now.Month + now.Day;
+			this.identifier = "squad-" + now.Year + now.Month + now.Day;
 		}
 
 		public RaidSquad(string identifier)
@@ -32,7 +33,7 @@ namespace DiscordSP_Bot
 
 		public bool Create(string username)
 		{
-			string path = "../../Resources/" + this.identifier + ".txt";
+			string path = "../../Resources/" + this.identifier + "__" + username + ".txt";
 
 			if (File.Exists(path))
 			{
@@ -47,51 +48,76 @@ namespace DiscordSP_Bot
 				
 			}
 
-			return this.Join(username);
+			return this.Join(username, username);
 		}
 
-		public void Disband(string identifier)
+		public void Disband(string username)
 		{
-			File.Delete("../../Resources/" + identifier + ".txt");
-		}
+			var path = "../../Resources/" + this.identifier + "__" + username + ".txt";
 
-		public bool Join(string username)
-		{
-			if ( ! File.Exists("../../Resources/" + this.identifier + ".txt"))
+			if ( ! File.Exists(path))
 			{
 				throw new RaidSquadNotFoundException();
 			}
 
-			string[] memberList =  this.GetMemberList();
+			File.Delete(path);
+		}
+
+		public bool Join(string leader, string username)
+		{
+			string[] memberList =  this.GetMemberList(leader);
 
 			if (memberList.Count() > 9)
 			{
 				throw new RaidSquadMemberLimitReached();
-				return false;
 			}
 				
 			if (memberList.Contains(username))
 			{
 				throw new RaidSquadMemberAlreadyJoined();
-				return false;
 			}
 
-			this.AddUsernameToFile(username);
+			this.AddUsernameToFile(leader, username);
 
 			return true;
 		}
 
-		public string[] GetMemberList()
+		public string[] GetMemberList(string username)
 		{
-			return File.ReadLines("../../Resources/" + this.identifier + ".txt").ToArray();
+			var path = "../../Resources/" + this.identifier + "__" + username + ".txt";
+
+			if ( ! File.Exists(path))
+			{
+				throw new RaidSquadNotFoundException();
+			}
+
+			return File.ReadLines(path).ToArray();
 		}
 
-		public void AddUsernameToFile(string username)
+		public void AddUsernameToFile(string leader, string username)
 		{
-			using (StreamWriter sw = File.AppendText("../../Resources/" + this.identifier + ".txt"))
+			var path = "../../Resources/" + this.identifier + "__" + leader + ".txt";
+
+			if ( ! File.Exists(path))
+			{
+				throw new RaidSquadNotFoundException();
+			}
+
+			using (StreamWriter sw = File.AppendText(path))
 			{
 				sw.WriteLine(username);
 			}
+		}
+
+		public FileInfo[] GetSquadList()
+		{
+			DirectoryInfo info = new DirectoryInfo("../../Resources/");
+
+			return info
+				.GetFiles()
+				.Where(f => f.Name.StartsWith("squad-"))
+				.OrderByDescending(f => f.CreationTime)
+				.ToArray();
 		}
 
 	}
