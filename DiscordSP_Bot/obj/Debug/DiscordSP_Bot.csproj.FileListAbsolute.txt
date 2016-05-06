@@ -14,3 +14,5 @@ D:\DOCUMENTS\C#\root\repos\DiscordSP_Bot\DiscordSP_Bot\bin\Debug\websocket-sharp
 D:\DOCUMENTS\C#\root\repos\DiscordSP_Bot\DiscordSP_Bot\obj\Debug\DiscordSP_Bot.csprojResolveAssemblyReference.cache
 D:\DOCUMENTS\C#\root\repos\DiscordSP_Bot\DiscordSP_Bot\obj\Debug\DiscordSP_Bot.exe
 D:\DOCUMENTS\C#\root\repos\DiscordSP_Bot\DiscordSP_Bot\obj\Debug\DiscordSP_Bot.pdb
+D:\DOCUMENTS\C#\root\repos\DiscordSP_Bot\DiscordSP_Bot\bin\Debug\nunit.framework.dll
+D:\DOCUMENTS\C#\root\repos\DiscordSP_Bot\DiscordSP_Bot\bin\Debug\nunit.framework.xml

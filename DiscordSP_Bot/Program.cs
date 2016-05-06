@@ -96,16 +96,26 @@ namespace DiscordSP_Bot
 				// @todo !join @Username (is a mention, I think)
 				if (e.MessageText.StartsWith(m_Commandsign + "join"))
                 {
-//					Console.WriteLine(e.RawJson);
-					Console.WriteLine(e.RawJson.ToObject<Array>()["d"]["mentions"][0]["id"]);
 
-//                    string username = e.Author.Username + "#" + e.Author.Discriminator;
-//
-//					RaidSquad sq = new RaidSquad();
-//                    bool a = sq.Join("mention", username);
-//                    // string username = e.Author.Username + "#" + e.Author.Discriminator;
-//                    // string message = JoinRaidSquad(username, m_ResourcePath, m_FilePrefix);
-//					e.Channel.SendMessage(a ? "Joined" : "Not Joined");
+                    dynamic rawJson = Newtonsoft.Json.JsonConvert.DeserializeObject(e.RawJson.ToString());
+
+                    var mentions = rawJson.d.mentions;
+                    foreach (var m in mentions)
+                    {
+                        Console.WriteLine(m.username);
+                    }
+
+
+//					Console.WriteLine(e.RawJson);
+//Console.WriteLine(e.RawJson.ToObject<Array>()["d"]["mentions"][0]["id"]);
+
+                    //                    string username = e.Author.Username + "#" + e.Author.Discriminator;
+                    //
+                    //					RaidSquad sq = new RaidSquad();
+                    //                    bool a = sq.Join("mention", username);
+                    //                    // string username = e.Author.Username + "#" + e.Author.Discriminator;
+                    //                    // string message = JoinRaidSquad(username, m_ResourcePath, m_FilePrefix);
+                    //					e.Channel.SendMessage(a ? "Joined" : "Not Joined");
                 }
             };
 
